@@ -24,7 +24,7 @@ stage('Deploy') {
               }
             }
             steps {
-                sh 'make publish'
+                echo 'Deployment to Test'
             }
         }
     }
