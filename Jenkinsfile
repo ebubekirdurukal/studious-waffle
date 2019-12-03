@@ -17,12 +17,15 @@ stages {
                 }
             }
         }
-        stage('Ui Test'){
-         steps {
-                        sh 'java -jar target/demo-0.0.1-SNAPSHOT.jar'
-                    }
-
+stage('Deploy') {
+            when {
+              expression {
+                currentBuild.result == null || currentBuild.result == 'SUCCESS'
+              }
+            }
+            steps {
+                sh 'make publish'
+            }
         }
-
     }
    }
