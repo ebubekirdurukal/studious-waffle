@@ -7,7 +7,7 @@ stages {
                 sh 'mvn -B -DskipTests clean install'
             }
         }
-        stage('Test') {
+        stage('Unit Tests') {
             steps {
                 sh 'mvn test'
             }
@@ -17,6 +17,12 @@ stages {
                 }
             }
         }
+                stage('API Tests') {
+                    steps {
+                        sh 'newman run  /Users/sahabt/Documents/Personal/JenkinsSunum.postman_collection.json'
+                    }
+                }
+
         stage('Deploy') {
             when {
               expression {
