@@ -36,6 +36,12 @@ pipeline {
             }
         }
 
+        stage('Load Test'){
+            steps{
+            sh 'jmeter -n -t /Users/sahabt/Documents/Personal/Spring-Jenkins/LoadTest.jmx'
+            }
+        }
+
         stage('Deploy') {
             when {
               expression {
