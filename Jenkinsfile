@@ -1,6 +1,9 @@
 pipeline {
-agent any
-
+    agent any
+    triggers {
+	    //Execute weekdays every 1 hour starting at minute 0
+        cron('0 */1 * * 1-5')
+    }
     stages {
         stage('Build') {
             steps {
@@ -19,21 +22,19 @@ agent any
         }
 
         stage('API Tests') {
-        parallel {
-        stage('Test On Windows') {
-
-        steps {
-        sh 'newman run  /Users/sahabt/Documents/Personal/JenkinsSunum.postman_collection.json'
+            parallel {
+                stage('Test On Windows') {
+                    steps {
+                    sh 'newman run  /Users/sahabt/Documents/Personal/JenkinsSunum.postman_collection.json'
+                    }
+                }
+                stage('Test On Linux') {
+                    steps {
+                    sh 'newman run  /Users/sahabt/Documents/Personal/JenkinsSunum.postman_collection.json'
+                    }
+                }
+            }
         }
-        }
-        stage('Test On Linux') {
-        steps {
-        sh 'newman run  /Users/sahabt/Documents/Personal/JenkinsSunum.postman_collection.json'
-        }
-        }
-        }
-        }
-
 
         stage('Deploy') {
             when {
