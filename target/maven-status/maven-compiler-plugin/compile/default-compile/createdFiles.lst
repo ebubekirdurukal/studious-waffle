@@ -1,6 +1,4 @@
-com/example/SkillRepository.class
+com/example/FilmRepository.class
+com/example/FilmsController.class
 com/example/Application.class
-com/example/Skill.class
-com/example/Developer.class
-com/example/DeveloperRepository.class
-com/example/DevelopersController.class
+com/example/Film.class

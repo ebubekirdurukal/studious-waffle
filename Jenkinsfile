@@ -1,7 +1,7 @@
 pipeline {
 agent any
 
-stages {
+    stages {
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean install'
@@ -17,11 +17,17 @@ stages {
                 }
             }
         }
-                stage('API Tests') {
-                    steps {
-                        sh 'newman run  /Users/sahabt/Documents/Personal/JenkinsSunum.postman_collection.json'
-                    }
-                }
+        stage('API Tests') {
+        parallel(
+        a: {
+        echo "Tests on Linux"
+        },
+        b: {
+        echo "Tests on Windows"
+        sh 'newman run  /Users/sahabt/Documents/Personal/JenkinsSunum.postman_collection.json'
+        }
+        )
+        }
 
         stage('Deploy') {
             when {
@@ -34,4 +40,4 @@ stages {
             }
         }
     }
-   }
+}
