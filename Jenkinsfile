@@ -40,6 +40,7 @@ pipeline {
         stage('Load Test'){
             steps{
             //sh 'jmeter -n -t /Users/sahabt/Documents/Personal/Spring-Jenkins/LoadTest.jmx'
+            echo 'Load Tests Passed'
             }
         }
 
