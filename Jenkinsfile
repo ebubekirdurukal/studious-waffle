@@ -17,17 +17,23 @@ agent any
                 }
             }
         }
+
         stage('API Tests') {
-        parallel(
-        a: {
-        echo "Tests on Linux"
-        },
-        b: {
-        echo "Tests on Windows"
+        parallel {
+        stage('Test On Windows') {
+
+        steps {
         sh 'newman run  /Users/sahabt/Documents/Personal/JenkinsSunum.postman_collection.json'
         }
-        )
         }
+        stage('Test On Linux') {
+        steps {
+        sh 'newman run  /Users/sahabt/Documents/Personal/JenkinsSunum.postman_collection.json'
+        }
+        }
+        }
+        }
+
 
         stage('Deploy') {
             when {
