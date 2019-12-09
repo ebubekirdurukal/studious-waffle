@@ -1,9 +1,10 @@
 pipeline {
     agent any
-    triggers {
+    //triggers {
 	    //Execute weekdays every 1 hour starting at minute 0
-        cron('0 */1 * * 1-5')
-    }
+    //    cron('0 */1 * * 1-5')
+    //}
+
     stages {
         stage('Build') {
             steps {
@@ -38,7 +39,7 @@ pipeline {
 
         stage('Load Test'){
             steps{
-            sh 'jmeter -n -t /Users/sahabt/Documents/Personal/Spring-Jenkins/LoadTest.jmx'
+            //sh 'jmeter -n -t /Users/sahabt/Documents/Personal/Spring-Jenkins/LoadTest.jmx'
             }
         }
 
